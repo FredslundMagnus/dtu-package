@@ -65,7 +65,6 @@ class Parameters():
         annotations = [(v.name, v.annotation) for v in signature(cls.run).parameters.values() if v.name not in {"cls", "self"}]
 
         isRunning: bool = cls.__module__ == "__main__"
-        print(isRunning)
         if isRunning:
             for name, annotation in annotations:
                 if cls.__annotations__[name] != annotation:
