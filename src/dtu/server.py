@@ -5,6 +5,7 @@ from random import randint
 
 dtu
 
+
 def check(params, features):
     for key, value in params.items():
         if key not in features:
@@ -43,17 +44,17 @@ class Parameters():
     isServer: bool = False
 
     def __post_init__(self):
-        file = open('experiments.sh', 'w')
+        file = open('Utils/experiments.sh', 'w')
         file.write('#!/bin/sh\n')
         file.write(f'#{"".join([str(randint(0, 9)) for _ in range(10)])}\n')
         self.folders = list(self.folders)
         features, folders = dict(self.__annotations__), ['', 'Markdown'] + self.folders
-        genExperiments(features, folders, file, self.name, self.instances, not self.GPU, **{k:v for k, v in self.__dict__.items() if k not in {"name", "instances", "folders"}})
+        genExperiments(features, folders, file, self.name, self.instances, not self.GPU, **{k: v for k, v in self.__dict__.items() if k not in {"name", "instances", "folders"}})
         file.close()
 
     @classmethod
     def start(cls) -> None:
-        values = {name: value for name, value in cls.__dict__.items() if name[0] !="_" and name != "run"}
+        values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
         values['cls'] = cls
         values['self'] = cls
         if 'database' in values:
@@ -70,5 +71,3 @@ class Parameters():
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
                     raise TypeError(f"The type of '{name}' should be '{_class_}' in run!")
             cls.run(*args)
-
-
