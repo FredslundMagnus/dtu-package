@@ -58,12 +58,40 @@ def save():
 def status():
     print(f"Here is a status!")
 
+
 def upgrade():
     print(f"Here is a upgrade!")
 
-def init():
-    print(f"Here is a upgrade!")
 
+def init():
+    with open('generate.py', 'a') as f:
+        f.write("""from main import Defaults
+
+Defaults("Example1", b=4, d="dsf")
+Defaults("Example2", b=4, d="dssf", GPU=True)
+Defaults("Example3", a=2, instances=2)
+""")
+    with open('main.py', 'a') as f:
+        f.write("""from src.dtu.server import Parameters, dtu
+
+
+@dtu
+class Defaults(Parameters):
+    name: str = "local"
+    instances: int = 1
+    GPU: bool = False
+    time: int = 3600
+
+    b: float = 2.0
+    a: int = 1
+    d: str = "fd"
+
+    def run(d: str, b: float) -> None:
+        print(b, d)
+
+
+Defaults.start()
+""")
 
 # def upgrade():
 #     install("git+https://github.com/FredslundMagnus/dtu-package.git")

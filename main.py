@@ -1,6 +1,7 @@
 from __future__ import annotations
 from src.dtu.server import Parameters, dtu
 
+
 @dtu
 class Defaults(Parameters):
     name: str = "local"
@@ -12,8 +13,8 @@ class Defaults(Parameters):
     a: int = 1
     d: str = "fd"
 
-    def run(self, b: float, d: str, a: int) -> None:
-        print(b,d, self.time)
+    def run(self, d: str, b: float) -> None:
+        print(b, d, self.time)
 
 
 Defaults.start()
