@@ -60,7 +60,7 @@ def run():
         print("First", file.readline())
         print("Second", file.readline())
         for line in file:
-            print(line)
+            run_command(line)
     if args[-1] == "-w" or args[-1] == "--watch":
         run_command("bstat watch")
 
