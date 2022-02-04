@@ -22,23 +22,26 @@ def run_command(command: str):
 args = argv[1:]
 
 
+def help() -> None:
+    print("Welcome to the dtu package! Try one of the following commands:")
+    print("dtu run")
+    print("dtu save")
+    print("dtu status")
+    print("dtu upgrade")
+
+
 def dtu():
     if len(args) == 0:
-        print("Welcome to the dtu package! Try one of the following commands:")
-        print("dtu run")
-        print("dtu save")
-        print("dtu status")
-        print("dtu update")
-        return
+        return help()
     if args[0] == "run":
         return run()
     if args[0] == "save":
         return save()
     if args[0] == "status":
         return status()
-    if args[0] == "update":
-        run_command("dtu.bat upgrade")
-        return update(sys.executable)
+    if args[0] == "upgrade":
+        return "Not implemented"
+    help()
 
 
 def run():
