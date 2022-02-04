@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass as dtu
 from inspect import signature
 from random import randint
-
+from sys import argv
 dtu
 
 
@@ -59,6 +59,9 @@ class Parameters():
 
     @classmethod
     def start(cls) -> None:
+        print(cls.__dict__)
+        cls.override(argv[1:])
+        print(cls.__dict__)
         values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
         values['cls'] = cls
         values['self'] = cls
@@ -76,3 +79,7 @@ class Parameters():
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
                     raise TypeError(f"The type of '{name}' should be '{_class_}' in run!")
             cls.run(*args)
+
+    @classmethod
+    def override(args) -> None:
+        pass
