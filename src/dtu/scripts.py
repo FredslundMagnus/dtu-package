@@ -14,12 +14,38 @@ def install(package):
 args = argv[1:]
 
 
+def dtu():
+    if len(args) == 0:
+        print("Welcome to the dtu package! Try one of the following commands:")
+        print("dtu run")
+        print("dtu save")
+        print("dtu status")
+        print("dtu update")
+        return
+    if args[1] == "run":
+        return run()
+    if args[1] == "save":
+        return save()
+    if args[1] == "status":
+        return status()
+    if args[1] == "update":
+        return update()
+
+
 def run():
-    print(f"I just ran, with {args = }!")
+    print(f"I just ran!")
 
 
 def save():
-    print(f"You just hot saved, with {args = }!")
+    print(f"You just got saved!")
+
+
+def status():
+    print(f"Here is a status!")
+
+
+def update():
+    print(f"Updating...")
 
 
 def upgrade():
