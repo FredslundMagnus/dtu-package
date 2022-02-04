@@ -23,9 +23,41 @@ def run_command(command: str):
         print(e)
 
 
+def generate_submit(command: str):
+    with open("submit_cpu.sh", "w") as f:
+        f.write("""#!/bin/sh
+#BSUB -q hpc
+#BSUB -n 1
+#BSUB -R "rusage[mem=16G]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 4320
+# end of BSUB options
+module -s load python3
+source ../project-env/bin/activate
+
+python main.py $MYARGS""")
+
+    with open("submit_gpu.sh", "w") as f:
+        f.write("""#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 1
+#BSUB -R "rusage[mem=16G]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 1440
+# end of BSUB options
+module -s load python3
+source ../project-env/bin/activate
+
+python main.py $MYARGS""")
+
+
 def run_clean(command: str):
-    print("running clean:", command)
     try:
+        if command.split(" ")[0] == "bsub":
+            generate_submit(command)
+            subprocess.check_call([command], shell=True)
+            return
         subprocess.check_call([command], shell=True)
     except Exception as e:
         print(e)
