@@ -81,5 +81,9 @@ class Parameters():
             cls.run(*args)
 
     @classmethod
-    def override(args) -> None:
-        pass
+    def override(cls, args) -> None:
+        print(args)
+        print(args[::2])
+        print(args[1::2])
+        for key, value in zip(args[::2], args[1::2]):
+            print(key, value)
