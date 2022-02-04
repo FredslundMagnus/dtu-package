@@ -91,8 +91,6 @@ class Parameters():
             print(key, value, _type)
             print(key, value, isinstance(_type, type))
             print(key, value, isinstance(_type, str))
-            print(_type == int)
-            print(_type == bool)
-            print(_type == float)
-            print(_type == str)
-            # cls.__setattr__(key, eval(f"{_type.__name__}({value})"))
+            if _type in {int, bool, float}:
+                value = eval(value)
+            cls.__setattr__(key, value)
