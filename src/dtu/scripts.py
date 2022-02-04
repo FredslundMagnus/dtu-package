@@ -65,7 +65,11 @@ def status():
 
 
 def generate():
-    import generate
+    try:
+        import generate
+    except Exception:
+        print("Are you starting a new project?")
+        print('Please run "dtu init" before generating experiments')
 
 
 def init():
