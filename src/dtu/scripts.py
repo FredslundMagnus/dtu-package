@@ -1,9 +1,9 @@
+import subprocess
 from sys import argv, platform
 isLinux: bool = False
 if platform == "linux" or platform == "linux2":
     isLinux = True
 
-# import subprocess
 # import sys
 
 
@@ -15,12 +15,12 @@ if platform == "linux" or platform == "linux2":
 #         print(e)
 
 
-# def run_command(command: str):
-#     print("running:", command)
-#     try:
-#         subprocess.check_call(command.split(" "), shell=True)
-#     except Exception as e:
-#         print(e)
+def run_command(command: str):
+    print("running:", command)
+    try:
+        subprocess.check_call(command.split(" "), shell=True)
+    except Exception as e:
+        print(e)
 
 
 args = argv[1:]
@@ -67,6 +67,10 @@ def status():
 def generate():
     try:
         import generate
+        run_command("git add experiments.sh")
+        run_command('git commit -m "Created Experiments"')
+        run_command("git pull")
+        run_command("git push")
     except Exception:
         print("Are you starting a new project?")
         print('Please run "dtu init" before generating experiments')
