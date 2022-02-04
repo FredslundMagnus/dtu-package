@@ -1,3 +1,4 @@
+@echo off
 IF "%1" == "upgrade" (
     git add .
     git commit -m"fix"
