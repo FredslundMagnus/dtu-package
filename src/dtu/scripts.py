@@ -57,7 +57,7 @@ def run_clean(command: str):
     try:
         if command.split(" ")[0] == "bsub":
             generate_submit(command)
-            subprocess.check_call([command], shell=True)
+            subprocess.check_call(command.split(" "), shell=True)
             return
         subprocess.check_call([command], shell=True)
     except Exception as e:
