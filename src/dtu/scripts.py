@@ -102,8 +102,7 @@ def run():
             run_clean(line)
     remove("submit_gpu.sh")
     remove("submit_cpu.sh")
-    if args[-1] == "-w" or args[-1] == "--watch":
-        run_clean("bstat watch")
+    status()
 
 
 def save():
@@ -115,7 +114,7 @@ def save():
 
 def status():
     if args[-1] == "-w" or args[-1] == "--watch":
-        run_clean("bstat watch")
+        run_clean("watch bstat")
     else:
         run_clean("bstat")
 
