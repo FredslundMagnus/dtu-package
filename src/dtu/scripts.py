@@ -67,7 +67,7 @@ def status():
 def generate():
     try:
         import generate
-        run_command("git add experiments.sh")
+        run_command("git add .")
         run_command('git commit -m "Experiments"')
         run_command("git pull")
         run_command("git push")
