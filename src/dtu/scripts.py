@@ -29,7 +29,7 @@ def dtu():
     if args[1] == "status":
         return status()
     if args[1] == "update":
-        return update()
+        return update(sys.executable)
 
 
 def run():
@@ -44,8 +44,8 @@ def status():
     print(f"Here is a status!")
 
 
-def update():
-    print(f"Updating...")
+def update(python: str):
+    print(f"Updating... {python}")
 
 
 def upgrade():
