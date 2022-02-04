@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass as dtu
 from inspect import signature
-from random import randint
 from sys import argv
 dtu
 

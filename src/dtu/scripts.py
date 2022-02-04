@@ -6,6 +6,14 @@ isLinux: bool = False
 if platform == "linux" or platform == "linux2":
     isLinux = True
 
+
+def myHash(text: str) -> int:
+    hash = 0
+    for ch in text:
+        hash = (hash*281 ^ ord(ch)*997) & 0xFFFFFFFFFFFFFFFF
+    return hash
+
+
 # import sys
 
 
@@ -95,7 +103,7 @@ def run():
     run_clean("git pull")
     with open("experiments.sh", 'r') as file:
         temp = file.read()
-        print(hash(temp))
+        print(myHash(temp))
     with open("experiments.sh", 'r') as file:
         file.readline()
         # __secret__: str = ""
