@@ -88,7 +88,7 @@ class Parameters():
         # -a 1
         # -d dssf
         # -ID 0
-        print()
+
         for _key, value in zip(args[::2], args[1::2]):
             key: str = _key[1:]
             _type = cls.__annotations__[key]
@@ -97,4 +97,4 @@ class Parameters():
             print(key, value, isinstance(_type, type))
             print(key, value, isinstance(_type, str))
 
-            # cls.__setattr__(key, value)
+            cls.__setattr__(key, _type(value))
