@@ -28,7 +28,6 @@ def help() -> None:
     print("dtu run")
     print("dtu save")
     print("dtu status")
-    print("dtu upgrade")
     print("dtu init")
     print("dtu generate")
 
@@ -68,7 +67,7 @@ def upgrade():
 
 
 def generate():
-    pass
+    import generate
 
 
 def init():
