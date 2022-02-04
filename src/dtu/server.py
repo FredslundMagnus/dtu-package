@@ -23,7 +23,7 @@ def check(params, features):
 
 def createFolders(name, folders, file):
     for folder in folders:
-        file.write(f"mkdir ../outputs/{name}/{folder}\n")
+        file.write(f"mkdir outputs/{name}/{folder}\n")
 
 
 def genExperiments(features, folders, file, name, n, cpu, **params):
@@ -31,7 +31,7 @@ def genExperiments(features, folders, file, name, n, cpu, **params):
     check(params, features)
     for i in range(n):
         params['ID'] = i
-        file.write(f'bsub -o "../outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if cpu else "gpu"}.sh\n')
+        file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if cpu else "gpu"}.sh\n')
 
 
 class Parameters():
@@ -49,6 +49,7 @@ class Parameters():
             file = open('experiments.sh', 'w')
             file.write('#!/bin/sh\n')
             file.write(f'#{"".join([str(randint(0, 9)) for _ in range(10)])}\n')
+            file.write(f"mkdir outputs/\n")
             Parameters.__first__ = False
         else:
             file = open('experiments.sh', 'a')
