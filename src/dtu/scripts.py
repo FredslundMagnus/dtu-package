@@ -23,6 +23,10 @@ def run_command(command: str):
         if li[0] == "mkdir":
             print("Creating dir")
             return
+        if li[0] == "bsub":
+            print("special")
+            subprocess.check_call([command])
+            return
         subprocess.check_call(li, shell=True)
     except Exception as e:
         print(e)
