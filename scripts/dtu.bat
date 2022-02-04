@@ -2,7 +2,8 @@
 
 IF "%1" == "upgrade" goto upgrade
 IF "%1" == "generate" goto generate
-goto other
+IF "%1" == "init" goto other
+goto help
 
 :upgrade
 IF "%2" == "--develop" (
@@ -22,16 +23,12 @@ goto done
 dtu_python %1
 goto done
 
-:done
+:help
+echo Welcome to the dtu package! Try one of the following commands:
+echo dtu init
+echo dtu upgrade
+echo dtu generate
+goto done
 
-@REM IF "%1" == "upgrade" (
-@REM     IF "%2" == "--develop" (
-@REM         git add .
-@REM         git commit -m"fix"
-@REM         git push
-@REM     )
-@REM     python -m pip install --upgrade --force-reinstall git+https://github.com/FredslundMagnus/dtu-package.git
-@REM ) ELSE (
-@REM     dtu_python %1
-@REM )
+:done
 
