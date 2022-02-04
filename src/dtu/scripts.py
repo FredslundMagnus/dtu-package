@@ -92,6 +92,11 @@ class Defaults(Parameters):
 
 Defaults.start()
 """)
+    with open('.gitignore', 'a') as f:
+        f.write("""*pyc
+.vscode/*
+__pycache__
+""")
 
 # def upgrade():
 #     install("git+https://github.com/FredslundMagnus/dtu-package.git")
