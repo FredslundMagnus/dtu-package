@@ -1,5 +1,8 @@
-from sys import argv
-from os.path import join
+from sys import argv, platform
+isLinux: bool = False
+if platform == "linux" or platform == "linux2":
+    isLinux = True
+
 # import subprocess
 # import sys
 
@@ -25,9 +28,10 @@ args = argv[1:]
 
 def help() -> None:
     print("Welcome to the dtu package! Try one of the following commands:")
-    print("dtu run")
-    print("dtu save")
-    print("dtu status")
+    if isLinux:
+        print("dtu run")
+        print("dtu save")
+        print("dtu status")
     print("dtu init")
     print("dtu generate")
 
@@ -35,14 +39,12 @@ def help() -> None:
 def cli():
     if len(args) == 0:
         return help()
-    if args[0] == "run":
+    if args[0] == "run" and isLinux:
         return run()
-    if args[0] == "save":
+    if args[0] == "save" and isLinux:
         return save()
-    if args[0] == "status":
+    if args[0] == "status" and isLinux:
         return status()
-    if args[0] == "upgrade":
-        return upgrade()
     if args[0] == "generate":
         return generate()
     if args[0] == "init":
@@ -60,10 +62,6 @@ def save():
 
 def status():
     print(f"Here is a status!")
-
-
-def upgrade():
-    print(f"Here is a upgrade!")
 
 
 def generate():
