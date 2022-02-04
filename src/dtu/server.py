@@ -48,7 +48,6 @@ class Parameters():
         if Parameters.__first__:
             file = open('experiments.sh', 'w')
             file.write('#!/bin/sh\n')
-            file.write(f'#{"".join([str(randint(0, 9)) for _ in range(10)])}\n')
             Parameters.__first__ = False
         else:
             file = open('experiments.sh', 'a')
