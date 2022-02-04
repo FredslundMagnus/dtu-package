@@ -17,18 +17,8 @@ if platform == "linux" or platform == "linux2":
 
 
 def run_command(command: str):
-    print("running:", command)
     try:
-        li: list[str] = command.split(" ")
-        if li[0] == "mkdir":
-            print("Creating dir")
-            subprocess.check_call([command])
-            return
-        if li[0] == "bsub":
-            print("special")
-            subprocess.check_call([command])
-            return
-        subprocess.check_call(li, shell=True)
+        subprocess.check_call(command.split(" "), shell=True)
     except Exception as e:
         print(e)
 
