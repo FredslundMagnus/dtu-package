@@ -42,11 +42,16 @@ class Parameters():
     GPU: bool = False
     time: int = 3600
     isServer: bool = False
+    __first__: bool = True
 
     def __post_init__(self):
-        file = open('Utils/experiments.sh', 'w')
-        file.write('#!/bin/sh\n')
-        file.write(f'#{"".join([str(randint(0, 9)) for _ in range(10)])}\n')
+        if Parameters.__first__:
+            file = open('Utils/experiments.sh', 'w')
+            file.write('#!/bin/sh\n')
+            file.write(f'#{"".join([str(randint(0, 9)) for _ in range(10)])}\n')
+            Parameters.__first__ = False
+        else:
+            file = open('Utils/experiments.sh', 'a')
         self.folders = list(self.folders)
         features, folders = dict(self.__annotations__), ['', 'Markdown'] + self.folders
         genExperiments(features, folders, file, self.name, self.instances, not self.GPU, **{k: v for k, v in self.__dict__.items() if k not in {"name", "instances", "folders"}})
