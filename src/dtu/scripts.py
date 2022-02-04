@@ -113,7 +113,6 @@ def check_not_the_same():
     old = read("__secret__.pyc")
     with open("__secret__.pyc", 'w') as secret:
         secret.write(current)
-    print(current, old, current == old)
     if current != old:
         return
     answer = input("Are you sure you want to run the same experiments again? (y/n): ")
