@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/python
 git add .
 git commit -m"fix"
 git push
