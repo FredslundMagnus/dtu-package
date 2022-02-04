@@ -1,6 +1,7 @@
 from __future__ import annotations
 import subprocess
 from sys import argv, platform
+from os import remove
 isLinux: bool = False
 if platform == "linux" or platform == "linux2":
     isLinux = True
@@ -99,12 +100,17 @@ def run():
         print("Second", file.readline())
         for line in file:
             run_clean(line)
+    remove("submit_gpu.sh")
+    remove("submit_cpu.sh")
     if args[-1] == "-w" or args[-1] == "--watch":
         run_clean("bstat watch")
 
 
 def save():
-    print(f"You just got saved!")
+    run_clean("git add .")
+    run_clean('git commit -m "Just Trained"')
+    run_clean("git pull")
+    run_clean("git push")
 
 
 def status():
