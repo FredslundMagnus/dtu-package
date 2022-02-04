@@ -92,6 +92,7 @@ class Parameters():
         for _key, value in zip(args[::2], args[1::2]):
             key: str = _key[1:]
             _type = cls.__annotations__[key]
+            _type = _type if isinstance(_type, type) else eval(_type)
             print(key, value, _type)
             print(key, value, isinstance(_type, type))
             print(key, value, isinstance(_type, str))
