@@ -58,9 +58,7 @@ class Parameters():
 
     @classmethod
     def start(cls) -> None:
-        print(cls.__dict__)
         override = cls.override(argv[1:])
-        print(cls.__dict__)
         values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
         values['cls'] = cls
         values['self'] = cls
@@ -84,9 +82,6 @@ class Parameters():
             key: str = _key[1:]
             _type = cls.__annotations__[key] if key != "ID" else int
             _type: type = _type if isinstance(_type, type) else eval(_type)
-            print(key, value, _type)
-            print(key, value, isinstance(_type, type))
-            print(key, value, isinstance(_type, str))
             if _type in {int, bool, float}:
                 value = eval(value)
             temp[key] = value
