@@ -81,8 +81,14 @@ class Parameters():
 
     @classmethod
     def override(cls, args) -> None:
-        print(args)
-        print(args[::2])
-        print(args[1::2])
+        # -name Example2-0
+        # -GPU True
+        # -time 3600
+        # -b 4.0
+        # -a 1
+        # -d dssf
+        # -ID 0
+        print(cls.__annotations__)
         for key, value in zip(args[::2], args[1::2]):
+            cls.__setattr__(key[1:], value)
             print(key, value)
