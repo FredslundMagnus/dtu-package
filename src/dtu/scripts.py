@@ -98,7 +98,7 @@ Defaults.start()
 .vscode/*
 __pycache__
 """)
-    with open(join('utils', 'experiments.sh'), 'w') as f:
+    with open('experiments.sh', 'w') as f:
         f.write("")
 
 # def upgrade():
