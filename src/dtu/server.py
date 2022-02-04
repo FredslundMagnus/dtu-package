@@ -93,4 +93,4 @@ class Parameters():
             print(key, value, isinstance(_type, str))
             if _type in {int, bool, float}:
                 value = eval(value)
-            cls.__setattr__(key, value)
+            cls.__setattr__(cls, key, value)
