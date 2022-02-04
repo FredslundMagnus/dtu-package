@@ -30,6 +30,7 @@ def help() -> None:
     print("dtu status")
     print("dtu upgrade")
     print("dtu init")
+    print("dtu generate")
 
 
 def cli():
@@ -43,6 +44,8 @@ def cli():
         return status()
     if args[0] == "upgrade":
         return upgrade()
+    if args[0] == "generate":
+        return generate()
     if args[0] == "init":
         return init()
     help()
@@ -62,6 +65,10 @@ def status():
 
 def upgrade():
     print(f"Here is a upgrade!")
+
+
+def generate():
+    pass
 
 
 def init():
