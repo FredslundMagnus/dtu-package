@@ -1,4 +1,5 @@
 from sys import argv
+from os.path import join
 # import subprocess
 # import sys
 
@@ -72,7 +73,7 @@ Defaults("Example2", b=4, d="dssf", GPU=True)
 Defaults("Example3", a=2, instances=2)
 """)
     with open('main.py', 'a') as f:
-        f.write("""from src.dtu.server import Parameters, dtu
+        f.write("""from dtu.server import Parameters, dtu
 
 
 @dtu
@@ -97,6 +98,8 @@ Defaults.start()
 .vscode/*
 __pycache__
 """)
+    with open(join('utils', 'experiments.sh'), 'w') as f:
+        f.write("")
 
 # def upgrade():
 #     install("git+https://github.com/FredslundMagnus/dtu-package.git")
