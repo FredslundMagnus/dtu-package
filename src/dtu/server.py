@@ -81,13 +81,8 @@ class Parameters():
 
     @classmethod
     def override(cls, args) -> None:
-        # -name Example2-0
-        # -GPU True
-        # -time 3600
-        # -b 4.0
-        # -a 1
-        # -d dssf
-        # -ID 0
+        if len(args) == 0:
+            return
 
         for _key, value in zip(args[::2], args[1::2]):
             key: str = _key[1:]
@@ -97,4 +92,4 @@ class Parameters():
             print(key, value, isinstance(_type, type))
             print(key, value, isinstance(_type, str))
 
-            cls.__setattr__(key, _type(value))
+            cls.__setattr__(key, _type.__call__(value))
