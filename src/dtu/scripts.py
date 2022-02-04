@@ -53,7 +53,11 @@ def cli():
 
 
 def run():
-    print(f"I just ran!")
+    run_command("git pull")
+    run_command("chmod +x experiments.sh")
+    run_command("./experiments.sh")
+    if args[-1] == "-w" or args[-1] == "--watch":
+        run_command("bstat watch")
 
 
 def save():
