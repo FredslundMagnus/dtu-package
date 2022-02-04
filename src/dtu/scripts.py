@@ -54,8 +54,13 @@ def cli():
 
 def run():
     run_command("git pull")
-    run_command("chmod +x experiments.sh")
-    run_command("./experiments.sh")
+    # run_command("chmod +x experiments.sh")
+    # run_command("./experiments.sh")
+    with open("experiments.sh", 'r') as file:
+        print("First", file.readline())
+        print("Second", file.readline())
+        for line in file:
+            print(line)
     if args[-1] == "-w" or args[-1] == "--watch":
         run_command("bstat watch")
 
