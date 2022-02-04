@@ -70,9 +70,9 @@ args = argv[1:]
 def help() -> None:
     print("Welcome to the dtu package! Try one of the following commands:")
     if isLinux:
-        print("dtu run")
+        print("dtu run (-w | --watch)")
         print("dtu save")
-        print("dtu status")
+        print("dtu status (-w | --watch)")
     print("dtu init")
     print("dtu generate")
 
@@ -114,7 +114,10 @@ def save():
 
 
 def status():
-    print(f"Here is a status!")
+    if args[-1] == "-w" or args[-1] == "--watch":
+        run_clean("bstat watch")
+    else:
+        run_clean("bstat")
 
 
 def generate():
