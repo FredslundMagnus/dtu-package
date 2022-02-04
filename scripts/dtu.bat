@@ -5,6 +5,6 @@ IF "%1" == "upgrade" (
     git push
     python -m pip install --upgrade --force-reinstall git+https://github.com/FredslundMagnus/dtu-package.git
 ) ELSE (
-    echo dog
+    dtu %1
 )
 
