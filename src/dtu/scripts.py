@@ -11,6 +11,14 @@ def install(package):
         print(e)
 
 
+def run_command(command: str):
+    # pipmain(["install", "--upgrade", "--force-reinstall", package])
+    try:
+        subprocess.check_call([command.split(" ")], shell=True)
+    except Exception as e:
+        print(e)
+
+
 args = argv[1:]
 
 
@@ -29,6 +37,7 @@ def dtu():
     if args[0] == "status":
         return status()
     if args[0] == "update":
+        run_command("dtu.bat upgrade")
         return update(sys.executable)
 
 
