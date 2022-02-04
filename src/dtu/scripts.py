@@ -12,7 +12,7 @@ def install(package):
 
 
 def run_command(command: str):
-    # pipmain(["install", "--upgrade", "--force-reinstall", package])
+    print("running:", command)
     try:
         subprocess.check_call([command.split(" ")], shell=True)
     except Exception as e:
