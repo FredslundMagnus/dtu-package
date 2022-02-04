@@ -33,6 +33,14 @@ def run_command(command: str):
         print(e)
 
 
+def run_clean(command: str):
+    print("running clean:", command)
+    try:
+        subprocess.check_call([command])
+    except Exception as e:
+        print(e)
+
+
 args = argv[1:]
 
 
@@ -64,8 +72,6 @@ def cli():
 
 def run():
     run_command("git pull")
-    # run_command("chmod +x experiments.sh")
-    # run_command("./experiments.sh")
     with open("experiments.sh", 'r') as file:
         print("First", file.readline())
         print("Second", file.readline())
