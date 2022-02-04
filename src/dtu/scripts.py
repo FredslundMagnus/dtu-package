@@ -22,13 +22,13 @@ def dtu():
         print("dtu status")
         print("dtu update")
         return
-    if args[1] == "run":
+    if args[0] == "run":
         return run()
-    if args[1] == "save":
+    if args[0] == "save":
         return save()
-    if args[1] == "status":
+    if args[0] == "status":
         return status()
-    if args[1] == "update":
+    if args[0] == "update":
         return update(sys.executable)
 
 
