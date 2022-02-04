@@ -59,14 +59,14 @@ class Parameters():
     @classmethod
     def start(cls) -> None:
         print(cls.__dict__)
-        cls.override(argv[1:])
+        override = cls.override(argv[1:])
         print(cls.__dict__)
         values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
         values['cls'] = cls
         values['self'] = cls
         if 'database' in values:
             values['database'].__create__(values['name'])
-        args = [values[name] for name in signature(cls.run).parameters]
+        args = [(override[name] if name in override else values[name]) for name in signature(cls.run).parameters]
         if 'database' in args:
             args['database'].__create__(args['name'])
         annotations = [(v.name, v.annotation) for v in signature(cls.run).parameters.values() if v.name not in {"cls", "self"}]
@@ -80,10 +80,10 @@ class Parameters():
             cls.run(*args)
 
     @classmethod
-    def override(cls, args) -> None:
+    def override(cls, args) -> dict[str, object]:
         if len(args) == 0:
-            return
-
+            return {}
+        temp = {}
         for _key, value in zip(args[::2], args[1::2]):
             key: str = _key[1:]
             _type = cls.__annotations__[key]
@@ -93,4 +93,5 @@ class Parameters():
             print(key, value, isinstance(_type, str))
             if _type in {int, bool, float}:
                 value = eval(value)
-            cls.__setattr__(cls, key, value)
+            temp[key] = value
+        return temp
