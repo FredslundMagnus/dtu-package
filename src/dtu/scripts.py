@@ -36,7 +36,7 @@ def run_command(command: str):
 def run_clean(command: str):
     print("running clean:", command)
     try:
-        subprocess.check_call([command])
+        subprocess.check_call([command], shell=True)
     except Exception as e:
         print(e)
 
