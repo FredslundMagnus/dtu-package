@@ -101,24 +101,29 @@ def cli():
 
 def run():
     run_clean("git pull")
+
     with open("experiments.sh", 'r') as file:
-        temp = file.read()
-        print(myHash(temp))
+        current = str(myHash(file.read()))
+    try:
+        with open("__secret__.pyc", 'r') as secret:
+            old = secret.read()
+    except IOError:
+        old = ""
+    with open("__secret__.pyc", 'w') as secret:
+        secret.write(current)
+    print(current, old)
     with open("experiments.sh", 'r') as file:
         file.readline()
-        # __secret__: str = ""
-        # try:
-        #     with open("__secret__.pyc", 'r') as secret:
-        #         __secret__ = secret.read()
-        # except IOError:
-        #     pass
-        # with open("__secret__.pyc", 'w') as secret:
-        #     temp = file.readline()
-        #     if __secret__ == temp:
-        #         answer = input("Are you sure you want to run the same experiments again? (y/n) ")
-        #         if answer != "y" and answer != "Y" and answer != "yes" and answer != "Yes" and answer != "YES":
-        #             return
-        #     secret.write(temp)
+        __secret__: str = ""
+
+        with open("__secret__.pyc", 'w') as secret:
+            temp = file.readline()
+            print(secret, temp)
+            if __secret__ == temp:
+                answer = input("Are you sure you want to run the same experiments again? (y/n) ")
+                if answer != "y" and answer != "Y" and answer != "yes" and answer != "Yes" and answer != "YES":
+                    return
+            secret.write(temp)
         for line in file:
             run_clean(line)
     remove("submit_gpu.sh")
