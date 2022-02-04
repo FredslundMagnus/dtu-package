@@ -14,7 +14,7 @@ def install(package):
 def run_command(command: str):
     print("running:", command)
     try:
-        subprocess.check_call([command.split(" ")], shell=True)
+        subprocess.check_call(command.split(" "), shell=True)
     except Exception as e:
         print(e)
 
