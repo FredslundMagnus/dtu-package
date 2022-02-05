@@ -185,9 +185,14 @@ Defaults("Example3", a=2, instances=2)
 """)
 
     with open('setup.py', 'a') as f:
-        f.write("""from dtu.server import setup
+        f.write("""ffrom dtu.server import setup
+
 # see 'module available' on server for newest python version
-setup(f"https://github.com/{user}/{project}.git", python="3.9.6", packages=["torch", "torchvision", "matplotlib"])
+setup(
+    f"https://github.com/{user}/{project}.git",
+    python="3.9.6",
+    packages=["torch", "torchvision", "matplotlib"]
+)
 """)
 
     with open('main.py', 'a') as f:
