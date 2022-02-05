@@ -6,25 +6,27 @@ PATH=$PATH:$HOME/bin:. (Change to this)
 esc esc :wq enter (quiting and saving)
 mkdir bin
 
+# add new project
 cd Desktop
-mkdir Bachelor
-cd Bachelor
+mkdir $NAME
+cd $NAME
 module load python3/3.9.6
 python3 -m venv project-env
 source project-env/bin/activate
 python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git
 python -m pip install torch torchvision matplotlib
 git config --global credential.helper store
-git clone https://github.com/FredslundMagnus/Bachelorprojekt.git
+git clone https://github.com/$User/$NAME.git
 cp project-env/bin/dtu_server ~/bin/dtu
-cd Bachelorprojekt
-chmod +x run.sh
-chmod +x save.sh
+cd $NAME
+
+
+python -m pip install --upgrade --force-reinstall git+https://github.com/FredslundMagnus/dtu-package.git
 
 
 
-
-cd Desktop/Bachelor/Bachelorprojekt/
-./run.sh
-watch bstat
-./save.sh
+dtu
+dtu run
+dtu save
+dtu status
+dtu goto $NAME

@@ -85,6 +85,7 @@ def help() -> None:
 
 def help_server() -> None:
     print("Welcome to the dtu package! Try one of the following commands:")
+    print("dtu goto $NAME")
     print("dtu run (--no-watch)")
     print("dtu save")
     print("dtu status (--no-watch)")
@@ -106,6 +107,11 @@ def cli():
     help()
 
 
+def goto(name: str):
+    run_clean(f"cd ~/Desktop/{name}/{name}/")
+    run_clean("cp ../project-env/bin/dtu_server ~/bin/dtu")
+
+
 def cli_server():
     if len(args) == 0:
         return help_server()
@@ -115,6 +121,8 @@ def cli_server():
         return save()
     if args[0] == "status":
         return status()
+    if args[0] == "goto" and len(args) == 2:
+        return goto(args[1])
     help_server()
 
 
