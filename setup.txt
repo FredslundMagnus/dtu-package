@@ -17,7 +17,7 @@ python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git
 python -m pip install torch torchvision matplotlib
 git config --global credential.helper store
 git clone https://github.com/$User/$NAME.git
-cp project-env/bin/dtu_server ~/bin/dtu
+yes | cp project-env/bin/dtu_server ~/bin/dtu
 cd $NAME
 
 

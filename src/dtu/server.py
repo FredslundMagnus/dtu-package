@@ -23,7 +23,7 @@ source project-env/bin/activate
 python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git{(newline + "python -m pip install " + " ".join(packages)) if packages else ""}
 git config --global credential.helper store
 git clone {github_link}
-cp project-env/bin/dtu_server ~/bin/dtu
+yes | cp project-env/bin/dtu_server ~/bin/dtu
 cd {name}
 """)
 
