@@ -75,10 +75,6 @@ args = argv[1:]
 
 def help() -> None:
     print("Welcome to the dtu package! Try one of the following commands:")
-    if isLinux:
-        print("dtu run (--no-watch)")
-        print("dtu save")
-        print("dtu status (--no-watch)")
     print("dtu init")
     print("dtu generate")
 
@@ -94,12 +90,6 @@ def help_server() -> None:
 def cli():
     if len(args) == 0:
         return help()
-    if args[0] == "run" and isLinux:
-        return run()
-    if args[0] == "save" and isLinux:
-        return save()
-    if args[0] == "status" and isLinux:
-        return status()
     if args[0] == "generate":
         return generate()
     if args[0] == "init":
@@ -193,6 +183,13 @@ Defaults("Example1", b=4, d="dsf")
 Defaults("Example2", b=4, d="dssf", GPU=True)
 Defaults("Example3", a=2, instances=2)
 """)
+
+    with open('setup.py', 'a') as f:
+        f.write("""from dtu.server import setup
+# see 'module available' on server for newest python version
+setup(github_link, python="3.9.6", packages=["torch", "torchvision", "matplotlib"])
+""")
+
     with open('main.py', 'a') as f:
         f.write("""from dtu.server import Parameters, dtu
 
