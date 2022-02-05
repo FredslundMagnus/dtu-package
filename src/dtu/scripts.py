@@ -185,7 +185,7 @@ Defaults("Example3", a=2, instances=2)
 """)
 
     with open('setup.py', 'a') as f:
-        f.write("""ffrom dtu.server import setup
+        f.write("""from dtu.server import setup
 
 # see 'module available' on server for newest python version
 setup(
