@@ -19,8 +19,7 @@ cd {name}
 module load python3/{python}
 python3 -m venv project-env
 source project-env/bin/activate
-python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git 
-{"python -m pip install " + " ".join(packages) if packages else ""}
+python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git{"\npython -m pip install " + " ".join(packages) if packages else ""}
 git config --global credential.helper store
 git clone {github_link}
 cp project-env/bin/dtu_server ~/bin/dtu
