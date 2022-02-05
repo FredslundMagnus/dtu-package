@@ -5,6 +5,28 @@ from sys import argv
 dtu
 
 
+def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch", "torchvision", "matplotlib"]):
+    """
+    github_link="https://github.com/FredslundMagnus/dtu-package.git"
+    python="3.9.6" # see module available for newest
+    packages=["torch", "torchvision", "matplotlib"]
+    """
+    name = github_link.split("/")[-1][:-4]
+    print(f"""
+cd Desktop
+mkdir {name}
+cd {name}
+module load python3/{python}
+python3 -m venv project-env
+source project-env/bin/activate
+python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git {" ".join(packages)}
+git config --global credential.helper store
+git clone {github_link}
+cp project-env/bin/dtu_server ~/bin/dtu
+cd {name}
+""")
+
+
 def check(params, features):
     for key, value in params.items():
         if key not in features:
