@@ -12,6 +12,7 @@ def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch
     packages=["torch", "torchvision", "matplotlib"]
     """
     name = github_link.split("/")[-1][:-4]
+    newline = "\n"
     print(f"""
 cd Desktop
 mkdir {name}
@@ -19,8 +20,7 @@ cd {name}
 module load python3/{python}
 python3 -m venv project-env
 source project-env/bin/activate
-python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git
-{"python -m pip install " + " ".join(packages) if packages else ""}
+python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git{(newline + "python -m pip install " + " ".join(packages)) if packages else ""}
 git config --global credential.helper store
 git clone {github_link}
 cp project-env/bin/dtu_server ~/bin/dtu
