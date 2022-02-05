@@ -14,7 +14,7 @@ def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch
     name = github_link.split("/")[-1][:-4]
     newline = "\n"
     print(f"""
-cd Desktop
+cd ~/Desktop
 mkdir {name}
 cd {name}
 module load python3/{python}
