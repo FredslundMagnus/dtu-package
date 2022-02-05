@@ -19,6 +19,8 @@ git config --global credential.helper store
 git clone https://github.com/$User/$NAME.git
 yes | cp project-env/bin/dtu_server ~/bin/dtu
 cd $NAME
+deactivate
+dtu
 
 
 python -m pip install --upgrade --force-reinstall git+https://github.com/FredslundMagnus/dtu-package.git

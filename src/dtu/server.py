@@ -25,6 +25,8 @@ git config --global credential.helper store
 git clone {github_link}
 yes | cp project-env/bin/dtu_server ~/bin/dtu
 cd {name}
+deactivate
+dtu
 """)
 
 
