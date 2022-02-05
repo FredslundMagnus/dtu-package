@@ -83,6 +83,13 @@ def help() -> None:
     print("dtu generate")
 
 
+def help_server() -> None:
+    print("Welcome to the dtu package! Try one of the following commands:")
+    print("dtu run (--no-watch)")
+    print("dtu save")
+    print("dtu status (--no-watch)")
+
+
 def cli():
     if len(args) == 0:
         return help()
@@ -97,6 +104,18 @@ def cli():
     if args[0] == "init":
         return init()
     help()
+
+
+def cli_server():
+    if len(args) == 0:
+        return help_server()
+    if args[0] == "run":
+        return run()
+    if args[0] == "save":
+        return save()
+    if args[0] == "status":
+        return status()
+    help_server()
 
 
 def read(file: str) -> str:
