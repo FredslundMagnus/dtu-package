@@ -13,8 +13,8 @@ class Defaults(Parameters):
     a: int = 1
     d: str = "fd"
 
-    def run(self, d: str, b: float, isServer: bool) -> None:
-        print(b, d, self.time, isServer)
+    def run(self, d: str, b: float) -> None:
+        print(b, d, self.time)
 
 
 Defaults.start()
