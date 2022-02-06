@@ -94,8 +94,8 @@ class Parameters():
         if isRunning:
             for name, annotation in annotations:
                 if name == "isServer":
-                    print(annotations, type(annotations))
-                    if annotations != bool and annotations != 'bool':
+                    print(annotation, type(annotation))
+                    if annotation != bool and annotation != 'bool':
                         raise TypeError(f"The type of 'isServer' should be 'bool' in run!")
                 elif cls.__annotations__[name] != annotation:
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
