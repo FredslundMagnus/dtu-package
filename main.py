@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.dtu.server import Parameters, dtu
+from dtu import Parameters, dtu
 
 
 @dtu
