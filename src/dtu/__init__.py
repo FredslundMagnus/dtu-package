@@ -93,7 +93,9 @@ class Parameters():
         isRunning: bool = cls.__module__ == "__main__"
         if isRunning:
             for name, annotation in annotations:
-                if cls.__annotations__[name] != annotation:
+                if name == "isServer":
+                    print(name, annotation)
+                elif cls.__annotations__[name] != annotation:
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
                     raise TypeError(f"The type of '{name}' should be '{_class_}' in run!")
             cls.run(*args)
