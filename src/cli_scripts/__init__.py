@@ -1,10 +1,7 @@
 from __future__ import annotations
 import subprocess
-from sys import argv, platform
+from sys import argv
 from os import remove
-isLinux: bool = False
-if platform == "linux" or platform == "linux2":
-    isLinux = True
 
 
 def myHash(text: str) -> int:
