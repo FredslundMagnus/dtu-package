@@ -86,6 +86,7 @@ class Parameters():
         values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
         values['cls'] = cls
         values['self'] = cls
+        values['isServer'] = len(argv[1:]) > 1
         args = [(override[name] if name in override else values[name]) for name in signature(cls.run).parameters]
         annotations = [(v.name, v.annotation) for v in signature(cls.run).parameters.values() if v.name not in {"cls", "self"}]
 
