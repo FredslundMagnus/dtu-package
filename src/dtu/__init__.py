@@ -30,7 +30,6 @@ class Parameter(type):
 
 
 def relive(_code: str) -> Parameter:
-    print(_code)
     module_name, class_name,  args, kwargs = _code.replace("@", " ").split("~")
     module = importlib.import_module(module_name)
     _class = module.__getattribute__(class_name)
@@ -82,6 +81,12 @@ def check(params, features):
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     print(values)
     print(override)
+    for key, value in override.items():
+        values[key] = value
+    print(values)
+    print("\n")
+    for key, value in values.items():
+        print(f"{key} :".ljust(30), f"{value}")
 
 
 def createFolders(name, folders, file):
