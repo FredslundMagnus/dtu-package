@@ -7,8 +7,12 @@ from sys import argv
 dtu
 
 
-def _get_transfer_format(module, class_name, args, kwargs, symbol="~"):
+def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
     return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "@")
+
+
+def _get_par_str(class_name, args, kwargs) -> str:
+    return class_name + str(args)[:-1] + str(kwargs) + ')'
 
 
 class Parameter(type):
@@ -20,6 +24,11 @@ class Parameter(type):
         def init(self, *args, **kwargs):
             self._get_transfer_format = _get_transfer_format(
                 inspect.getmodule(self),
+                self.__class__.__name__,
+                args,
+                kwargs
+            )
+            self._par_str = _get_par_str(
                 self.__class__.__name__,
                 args,
                 kwargs
@@ -85,9 +94,10 @@ def print_parameters(values: dict[str, object], override: dict[str, object]) -> 
         values[key] = value
     print(values)
     print("\n")
+    print("Parameters:".ljust(30), "Values")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer"}:
-            print(f"{key}:".ljust(30), f"{value if type(type(value)) is type else 333333}")
+            print(f"{key}:".ljust(30), f"{value if type(type(value)) is type else value._par_str}")
 
 
 def createFolders(name, folders, file):
