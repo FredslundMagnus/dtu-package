@@ -101,12 +101,14 @@ def print_parameters(values: dict[str, object], override: dict[str, object]) -> 
     for key, value in override.items():
         values[key] = value
     a = 20
+    print("# Parameters")
     print("\n| PARAMETER".ljust(1+a) + "| TYPE".ljust(a) + "| VALUE".ljust(a) + "|")
     print("|".ljust(a, "-") + "|".ljust(a, "-") + "|".ljust(a, "-") + "|")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
-            print(f"| {key}".ljust(a) + f"| {type(value).__name__}".ljust(a) + f"| {value if type(type(value)) is type else value._par_str}".ljust(a) + "|")
+            print(f"| {key}".ljust(a) + f"| {type(value).__name__}".ljust(a) + f"| {value if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
     print("")
+    print("# Output")
 
 
 def createFolders(name, folders, file):
