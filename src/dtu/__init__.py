@@ -106,7 +106,7 @@ def print_parameters(values: dict[str, object], override: dict[str, object]) -> 
     print("|".ljust(a, "-") + "|".ljust(a, "-") + "|".ljust(a, "-") + "|")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
-            print(f"| {key}".ljust(a) + f"| {type(value).__name__}".ljust(a) + f"| {value if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
+            print(f"| {key}".ljust(a) + f"| `{type(value).__name__}`".ljust(a) + f"| {value if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
     print("\n# Output\n")
 
 
