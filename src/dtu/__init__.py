@@ -141,6 +141,8 @@ class Parameters():
                 elif cls.__annotations__[name] != annotation:
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
                     raise TypeError(f"The type of '{name}' should be '{_class_}' in run!")
+            if len(argv) > 2:
+                print("Server")
             cls.run(*args)
 
     @classmethod
