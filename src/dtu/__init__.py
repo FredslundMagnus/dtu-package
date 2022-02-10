@@ -12,7 +12,7 @@ def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
 
 
 def _get_par_str(class_name, args, kwargs) -> str:
-    return class_name + str(args)[:-1] + str(kwargs) + ')'
+    return class_name + str(args)[:-1] + " " + str(kwargs)[2:-1].replace("': ", '=') + ')'
 
 
 class Parameter(type):
