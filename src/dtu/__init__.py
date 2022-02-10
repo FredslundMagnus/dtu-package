@@ -79,8 +79,9 @@ def check(params, features):
                 #     params[key] = value.__name__
 
 
-def print_parameters(values: dict[str, object]) -> None:
+def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     print(values)
+    print(override)
 
 
 def createFolders(name, folders, file):
@@ -146,7 +147,7 @@ class Parameters():
                     _class_ = cls.__annotations__[name].__name__ if hasattr(cls.__annotations__[name], "__name__") else cls.__annotations__[name]
                     raise TypeError(f"The type of '{name}' should be '{_class_}' in run!")
             if values['isServer']:
-                print_parameters(values)
+                print_parameters(values, override)
             cls.run(*args)
 
     @classmethod
