@@ -152,6 +152,7 @@ class Parameters():
                 _type: type = _type if isinstance(_type, type) else eval(_type)
             except NameError:
                 print(value)
+                print(relive(value))
 
             if _type in {int, bool, float}:
                 value = eval(value)
