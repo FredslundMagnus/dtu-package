@@ -30,6 +30,7 @@ class Parameter(type):
 
 
 def relive(_code: str) -> Parameter:
+    print(_code)
     module_name, class_name,  args, kwargs = _code.replace("^", " ").split("~")
     module = importlib.import_module(module_name)
     _class = module.__getattribute__(class_name)
