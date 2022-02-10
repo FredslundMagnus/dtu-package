@@ -17,8 +17,10 @@ def _get_par_str(class_name, args, kwargs) -> str:
         temp += str(args)[1:-1]
         if temp[-1] == ",":
             temp = temp[:-1]
+    if args and kwargs:
+        temp += ", "
     if kwargs:
-        str(kwargs)[2:-1].replace("': ", '=').replace(", '", ", ")
+        temp += str(kwargs)[2:-1].replace("': ", '=').replace(", '", ", ")
     temp += ")"
     return temp
 
@@ -98,7 +100,7 @@ def check(params, features):
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     for key, value in override.items():
         values[key] = value
-    print("\nParameters:".ljust(30), "Values")
+    print("\nParameters:".ljust(31), "Values")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
             print(f"{key}:".ljust(30), f"{value if type(type(value)) is type else value._par_str}")
