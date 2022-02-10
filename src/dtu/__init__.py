@@ -79,7 +79,7 @@ def check(params, features):
                 #     params[key] = value.__name__
 
 
-def print_parametes(values: dict[str, object]) -> None:
+def print_parameters(values: dict[str, object]) -> None:
     print(values)
 
 
