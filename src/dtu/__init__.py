@@ -150,8 +150,8 @@ class Parameters():
             _type = cls.__annotations__[key] if key != "ID" else int
             try:
                 _type: type = _type if isinstance(_type, type) else eval(_type)
-            except NameError as e:
-                print(e)
+            except NameError:
+                print(value)
 
             if _type in {int, bool, float}:
                 value = eval(value)
