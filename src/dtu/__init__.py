@@ -65,7 +65,7 @@ dtu
 def check(params, features):
     for key, value in params.items():
         if value.__class__ not in {int, str, bool, float} and value.__class__.__class__ is not Parameter:
-            raise Exception("You can only user int, str, bool, float or objects with metaclass=Parameter")
+            raise Exception(f"Problem with {key}: {value}. You can only user int, str, bool, float or objects with metaclass=Parameter")
         if key not in features:
             raise Exception(f'The feature "{key}" does not exist.')
         if value.__class__ != features[key]:

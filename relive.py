@@ -9,6 +9,14 @@ class P1(metaclass=Parameter):
         self.s = s
 
 
+class P2():
+    a: int = 2
+
+    def __init__(self, name, s=4) -> None:
+        self.name = name
+        self.s = s
+
+
 # obj = P1("gs s", s=7)
 # _code = obj._get_transfer_format
 # print(P1("gs s", s=7))
