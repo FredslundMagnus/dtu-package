@@ -8,7 +8,7 @@ dtu
 
 
 def _get_transfer_format(module, class_name, args, kwargs, symbol="~"):
-    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "¨")
+    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "^")
 
 
 class Parameter(type):
