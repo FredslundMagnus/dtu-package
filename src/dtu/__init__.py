@@ -12,7 +12,15 @@ def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
 
 
 def _get_par_str(class_name, args, kwargs) -> str:
-    return class_name + str(args)[:-1] + " " + str(kwargs)[2:-1].replace("': ", '=') + ')'
+    temp: str = class_name + "("
+    if args:
+        temp += str(args)[1:-1]
+        if temp[-1] == ",":
+            temp = temp[:-1]
+    if kwargs:
+        str(kwargs)[2:-1].replace("': ", '=').replace(", '", ", ")
+    temp += ")"
+    return temp
 
 
 class Parameter(type):
@@ -88,16 +96,13 @@ def check(params, features):
 
 
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
-    print(values)
-    print(override)
     for key, value in override.items():
         values[key] = value
-    print(values)
-    print("\n")
-    print("Parameters:".ljust(30), "Values")
+    print("\nParameters:".ljust(30), "Values")
     for key, value in values.items():
-        if key not in {"instances", "cls", "self", "isServer"}:
+        if key not in {"instances", "cls", "self", "isServer", "ID"}:
             print(f"{key}:".ljust(30), f"{value if type(type(value)) is type else value._par_str}")
+    print("")
 
 
 def createFolders(name, folders, file):
