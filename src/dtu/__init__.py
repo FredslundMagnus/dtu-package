@@ -100,7 +100,8 @@ def check(params, features):
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     for key, value in override.items():
         values[key] = value
-    print("\nParameters:".ljust(31), "Values")
+    print("\n| PARAMETERS".ljust(31) + "| VALUES".ljust(30) + "|")
+    print("|".ljust(30, "-") + "|".ljust(30, "-") + "|")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
             print(f"{key}:".ljust(30), f"{value if type(type(value)) is type else value._par_str}")
