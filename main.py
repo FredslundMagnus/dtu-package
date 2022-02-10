@@ -14,9 +14,8 @@ class Defaults(Parameters):
     a: int = 1
     d: str = "fd"
     k: P1 = P1("sdf sdf", s=78)
-    k2: P2 = P2("sdf sdf", s=78)
 
-    def run(self, d: str, b: float, isServer: bool, k: P1, k2: P2) -> None:
+    def run(self, d: str, b: float, isServer: bool, k: P1) -> None:
         print(b, d, self.time, isServer)
         print(k.name)
 
