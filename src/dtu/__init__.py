@@ -8,7 +8,7 @@ dtu
 
 
 def _get_transfer_format(module, class_name, args, kwargs, symbol="~"):
-    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "^")
+    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "¤")
 
 
 class Parameter(type):
@@ -31,7 +31,7 @@ class Parameter(type):
 
 def relive(_code: str) -> Parameter:
     print(_code)
-    module_name, class_name,  args, kwargs = _code.replace("^", " ").split("~")
+    module_name, class_name,  args, kwargs = _code.replace("¤", " ").split("~")
     module = importlib.import_module(module_name)
     _class = module.__getattribute__(class_name)
     return _class.__call__(*eval(args), **eval(kwargs))
