@@ -81,9 +81,15 @@ def createFolders(name, folders, file):
         file.write(f"mkdir -p outputs/{name}/{folder}\n")
 
 
+def change_parameter(params: dict[str, object]) -> dict[str, object]:
+    for key, value in params.items():
+        print(key, value.__class__)
+
+
 def genExperiments(features, folders, file, name, n, cpu, **params):
     createFolders(name, folders, file)
     check(params, features)
+    params = change_parameter(params)
     for i in range(n):
         params['ID'] = i
         file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if cpu else "gpu"}.sh\n')
