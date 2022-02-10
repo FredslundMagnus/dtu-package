@@ -86,7 +86,8 @@ def print_parameters(values: dict[str, object], override: dict[str, object]) -> 
     print(values)
     print("\n")
     for key, value in values.items():
-        print(f"{key} :".ljust(30), f"{value}")
+        if key not in {"instances", "cls", "self", "isServer"}:
+            print(f"{key}:".ljust(30), f"{value}")
 
 
 def createFolders(name, folders, file):
