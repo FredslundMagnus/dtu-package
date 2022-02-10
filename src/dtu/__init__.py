@@ -64,6 +64,7 @@ dtu
 
 def check(params, features):
     for key, value in params.items():
+        print(value.__class__ in {int, str, bool, float})
         if key not in features:
             raise Exception(f'The feature "{key}" does not exist.')
         if value.__class__ != features[key]:
@@ -153,7 +154,6 @@ class Parameters():
                 _type: type = _type if isinstance(_type, type) else eval(_type)
             except NameError:
                 value = relive(value)
-
             if _type in {int, bool, float}:
                 value = eval(value)
             temp[key] = value
