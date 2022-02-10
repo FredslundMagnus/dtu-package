@@ -100,7 +100,7 @@ def check(params, features):
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     for key, value in override.items():
         values[key] = value
-    a = 30
+    a = 20
     print("\n| PARAMETER".ljust(1+a) + "| TYPE".ljust(a) + "| VALUE".ljust(a) + "|")
     print("|".ljust(a, "-") + "|".ljust(a, "-") + "|".ljust(a, "-") + "|")
     for key, value in values.items():
