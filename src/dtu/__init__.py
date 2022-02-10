@@ -83,7 +83,8 @@ def createFolders(name, folders, file):
 
 def change_parameter(params: dict[str, object]) -> dict[str, object]:
     for key, value in params.items():
-        print(key, value.__class__.__class__ is Parameter)
+        if value.__class__.__class__ is Parameter:
+            params[key] = value._get_transfer_format
     return params
 
 
