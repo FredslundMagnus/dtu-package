@@ -21,7 +21,7 @@ def _get_par_str(class_name, args, kwargs) -> str:
     if args and kwargs:
         temp += "<k>,</k> "
     if kwargs:
-        temp += str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", ", <c>")
+        temp += "<c>" + str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>")
     temp += "<k>)</k>"
     return temp
 
