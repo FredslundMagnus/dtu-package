@@ -40,7 +40,7 @@ class _Parameter(type):
         return x
 
 
-class Parameter(_Parameter):
+class Parameter(metaclass=_Parameter):
     pass
 
 
