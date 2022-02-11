@@ -15,7 +15,7 @@ def _get_par_str(class_name, args, kwargs) -> str:
     # <d>Param2</d><k>(</k><j>'fff'</j><k>,</k> <f>1119</f><k>,</k> <c>s</c><k>=</k><f>2</f><k>,</k> <c>d</c><k>=</k><j>'fgrs'</j><k>)</k>
     temp: str = f"<d>{class_name}</d><k>(</k>"
     if args:
-        temp += str(args)[1:-1]
+        temp += "<k>,</k> ".join(colorize(arg) for arg in args)
         if temp[-1] == ",":
             temp = temp[:-1]
     if args and kwargs:
