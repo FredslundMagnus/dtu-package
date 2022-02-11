@@ -97,16 +97,35 @@ def check(params, features):
                 #     params[key] = value.__name__
 
 
+def colorize(obj: object) -> str:
+    if type(obj) in {int, float}:
+        return f"<f>{obj}</f>"
+    if type(obj) is str:
+        return f"<j>{obj}</j>"
+    if type(obj) is bool:
+        return f"<e>{obj}</e>"
+
+
 def print_parameters(values: dict[str, object], override: dict[str, object]) -> None:
     for key, value in override.items():
         values[key] = value
     a = 20
+    print("""
+<style>
+c { color: #9cdcfe; font-family: 'Verdana', sans-serif;} /* VARIABLE */
+d { color: #4EC9B0; font-family: 'Verdana', sans-serif;} /* CLASS */
+e { color: #569cd6; font-family: 'Verdana', sans-serif;} /* BOOL */
+f { color: #b5cea8; font-family: 'Verdana', sans-serif;} /* NUMBERS */
+j { color: #ce9178; font-family: 'Verdana', sans-serif;} /* STRING */
+k { font-family: 'Verdana', sans-serif;} /* SYMBOLS */
+</style>
+""")
     print("# Parameters\n")
     print("| PARAMETER".ljust(a) + "| TYPE".ljust(a) + "| VALUE".ljust(a) + "|")
     print("|".ljust(a, "-") + "|".ljust(a, "-") + "|".ljust(a, "-") + "|")
     for key, value in values.items():
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
-            print(f"| {key}".ljust(a) + f"| `{type(value).__name__}`".ljust(a) + f"| {value if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
+            print(f"| <c>{key}</c>".ljust(a) + f"| <d>{type(value).__name__}</d>".ljust(a) + f"| {colorize(value) if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
     print("\n# Output\n")
 
 

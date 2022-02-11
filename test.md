@@ -1,14 +1,23 @@
+<style>
+c { color: #9cdcfe; font-family: 'Verdana', sans-serif;} /* VARIABLE */
+d { color: #4EC9B0; font-family: 'Verdana', sans-serif;} /* CLASS */
+e { color: #569cd6; font-family: 'Verdana', sans-serif;} /* BOOL */
+f { color: #b5cea8; font-family: 'Verdana', sans-serif;} /* NUMBERS */
+j { color: #ce9178; font-family: 'Verdana', sans-serif;} /* STRING */
+k { font-family: 'Verdana', sans-serif;} /* SYMBOLS */
+</style>
+
 # Parameters
 
 | PARAMETER         | TYPE              | VALUE             |
 |-------------------|-------------------|-------------------|
-| name              | `str`             | Example3-1        |
-| GPU               | `bool`            | False             |
-| time              | `int`             | 3600              |
-| b                 | `float`           | 2.0               |
-| a                 | `int`             | 2                 |
-| d                 | `str`             | fd                |
-| k                 | `Param`           | Param('name2', s=11) |
-| l                 | `Param2`          | Param2('fff', 1119, s=2, d='fgrs') |
+| <c>name</c>              | <d>str</d>            | <j>Example3-1</j>        |
+| <c>GPU</c>               | <d>bool</d>            | <e>False</e>             |
+| <c>time</c>              | <d>int</d>             | <f>3600</f>              |
+| <c>b</c>                 | <d>float</d>           | <f>2.0</f>               |
+| <c>a</c>                 | <d>int</d>             | <f>2</f>                 |
+| <c>d</c>                 | <d>str</d>             | <j>fd</j>                |
+| <c>k</c>                 | <d>Param</d>           | <d>Param</d><k>(</k><j>'name2'</j><k>,</k> <c>s</c><k>=</k><f>11</f><k>)</k> |
+| <c>l</c>                 | <d>Param2</d>          | <d>Param2</d><k>(</k><j>'fff'</j><k>,</k> <f>1119</f><k>,</k> <c>s</c><k>=</k><f>2</f><k>,</k> <c>d</c><k>=</k><j>'fgrs'</j><k>)</k> |
 
 # Output
