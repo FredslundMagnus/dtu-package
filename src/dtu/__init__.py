@@ -18,10 +18,9 @@ def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
 
 
 def check_primitives(args, kwargs: dict):
-    for arg in args:
-        print(type(arg))
-    for arg in kwargs.values():
-        print(type(arg))
+    for arg in list(args) + list(kwargs.values()):
+        if type(arg) not in {int, str, bool, float}:
+            raise Exception("Please only use the types {int, str, bool, float} in a Parameter")
 
 
 class _Parameter(type):
