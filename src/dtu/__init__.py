@@ -21,7 +21,7 @@ def _get_par_str(class_name, args, kwargs) -> str:
     if args and kwargs:
         temp += "<k>,</k> "
     if kwargs:
-        temp += "<c>" + str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>")
+        temp += "<c>" + '<k>,</k>'.join([colorize(eval(v))for v in str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>").split('<k>,</k>')])
     temp += "<k>)</k>"
     return temp
 
@@ -102,7 +102,7 @@ def colorize(obj: object) -> str:
     if type(obj) in {int, float}:
         return f"<f>{obj}</f>"
     if type(obj) is str:
-        return f"<j>{obj}</j>"
+        return f'<j>"{obj}"</j>'
     if type(obj) is bool:
         return f"<e>{obj}</e>"
 
