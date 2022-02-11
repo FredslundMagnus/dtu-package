@@ -1,3 +1,4 @@
+
 <style>
 c { color: #9cdcfe; font-family: 'Verdana', sans-serif;} /* VARIABLE */
 d { color: #4EC9B0; font-family: 'Verdana', sans-serif;} /* CLASS */
@@ -7,6 +8,24 @@ j { color: #ce9178; font-family: 'Verdana', sans-serif;} /* STRING */
 k { font-family: 'Verdana', sans-serif;} /* SYMBOLS */
 </style>
 
+# Parameters
+
+| PARAMETER         | TYPE              | VALUE             |
+|-------------------|-------------------|-------------------|
+| <c>name</c>       | <d>str</d>        | <j>fdsa</j>       |
+| <c>GPU</c>        | <d>bool</d>       | <e>False</e>      |
+| <c>time</c>       | <d>int</d>        | <f>3600</f>       |
+| <c>b</c>          | <d>float</d>      | <f>2.0</f>        |
+| <c>a</c>          | <d>int</d>        | <f>1</f>          |
+| <c>d</c>          | <d>str</d>        | <j>fd</j>         |
+| <c>k</c>          | <d>Param</d>      | Param('sdf sdf', s=78) |
+| <c>l</c>          | <d>Param2</d>     | Param2('s f', 5, s=1, d='76f') |
+
+# Output
+
+    2.0 fd 3600 True
+    sdf sdf 2 78
+    
 # Parameters
 
 | PARAMETER         | TYPE              | VALUE             |
