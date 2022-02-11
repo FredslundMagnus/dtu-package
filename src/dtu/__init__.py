@@ -225,5 +225,7 @@ class Parameters():
                 value = relive(value)
             if _type in {int, bool, float}:
                 value = eval(value)
+            if type(type(_type)) is _Parameter:
+                print(value)
             temp[key] = value
         return temp

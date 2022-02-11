@@ -22,7 +22,7 @@ class Defaults(Parameters):
 
     def run(self, d: str, b: float, isServer: bool, k: Param) -> None:
         print(b, d, self.time, isServer)
-        print(k.name, k.s)
+        print(k)
 
 
 Defaults.start()
