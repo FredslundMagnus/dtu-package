@@ -1,5 +1,5 @@
 from main import Defaults
-from relive import Param, Param2
+from params import Param, Param2
 
 Defaults("Example1", b=4, d="dsf")
 Defaults("Example2", b=4, d="dssf", GPU=True)

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dtu import Parameters, dtu
-from relive import Param, Param2
+from params import Param, Param2
 
 
 @dtu
