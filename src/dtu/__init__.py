@@ -225,7 +225,7 @@ class Parameters():
                 value = relive(value)
             if _type in {int, bool, float}:
                 value = eval(value)
-            print(type(type(_type)))
+            print(type(_type), type(type(_type)))
             if type(type(_type)) is _Parameter:
                 print(value)
                 value = relive(value)
