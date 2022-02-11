@@ -11,7 +11,7 @@ def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
     return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "@")
 
 
-def _get_par_str(class_name, args, kwargs) -> str:
+def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
     # <d>Param2</d><k>(</k><j>'fff'</j><k>,</k> <f>1119</f><k>,</k> <c>s</c><k>=</k><f>2</f><k>,</k> <c>d</c><k>=</k><j>'fgrs'</j><k>)</k>
     temp: str = f"<d>{class_name}</d><k>(</k>"
     if args:
@@ -21,7 +21,8 @@ def _get_par_str(class_name, args, kwargs) -> str:
     if args and kwargs:
         temp += "<k>,</k> "
     if kwargs:
-        temp += "<c>" + str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>")
+        temp += "<k>,</k> ".join(f"<c>{key}</c><k>=</k>{colorize(value)}" for key, value in kwargs.items())
+        # temp += "<c>" + str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>")
     temp += "<k>)</k>"
     return temp
 
