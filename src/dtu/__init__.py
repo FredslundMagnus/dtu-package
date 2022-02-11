@@ -119,6 +119,7 @@ k { font-family: 'Verdana', sans-serif;} /* SYMBOLS */
         if key not in {"instances", "cls", "self", "isServer", "ID"}:
             print(f"| <c>{key}</c>".ljust(a) + f"| <d>{type(value).__name__}</d>".ljust(a) + f"| {colorize(value) if type(type(value)) is type else value._par_str}".ljust(a-1) + " |")
     print("\n# Output\n")
+    print("```python")
 
 
 def createFolders(name, folders, file):
@@ -186,6 +187,7 @@ class Parameters():
             if values['isServer']:
                 print_parameters(values, override)
             cls.run(*args)
+            print("```")
 
     @classmethod
     def override(cls, args) -> dict[str, object]:
