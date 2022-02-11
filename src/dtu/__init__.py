@@ -16,7 +16,7 @@ def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
     # temp: str = f"<d>{class_name}</d><k>(</k>"
     _args = [colorize(arg) for arg in args]
     _kwargs = [f"<c>{key}</c><k>=</k>{colorize(value)}" for key, value in kwargs.items()]
-    print("her", "sdfsdf".join([]))
+    print("her", "sdfsdf".join([]), len("sdfsdf".join([])))
     temp: str = f"<d>{class_name}</d><k>(</k>" + "<k>,</k> ".join(_args+_kwargs) + "<k>)</k>"
     # temp +=
     # if args:
