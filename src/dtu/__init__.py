@@ -12,24 +12,9 @@ def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
 
 
 def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
-    # <d>Param2</d><k>(</k><j>'fff'</j><k>,</k> <f>1119</f><k>,</k> <c>s</c><k>=</k><f>2</f><k>,</k> <c>d</c><k>=</k><j>'fgrs'</j><k>)</k>
-    # temp: str = f"<d>{class_name}</d><k>(</k>"
     _args = [colorize(arg) for arg in args]
     _kwargs = [f"<c>{key}</c><k>=</k>{colorize(value)}" for key, value in kwargs.items()]
-    print("her", "sdfsdf".join([]), len("sdfsdf".join([])))
-    temp: str = f"<d>{class_name}</d><k>(</k>" + "<k>,</k> ".join(_args+_kwargs) + "<k>)</k>"
-    # temp +=
-    # if args:
-    #     temp += "<k>,</k> ".join(colorize(arg) for arg in args)
-    #     if temp[-1] == ",":
-    #         temp = temp[:-1]
-    # if args and kwargs:
-    #     temp += "<k>,</k> "
-    # if kwargs:
-    #     temp += "<k>,</k> ".join(f"<c>{key}</c><k>=</k>{colorize(value)}" for key, value in kwargs.items())
-    #     # temp += "<c>" + str(kwargs)[2:-1].replace("': ", '</c><k>=</k>').replace(", '", "<k>,</k> <c>")
-    # temp += "<k>)</k>"
-    return temp
+    return f"<d>{class_name}</d><k>(</k>{'<k>,</k> '.join(_args+_kwargs)}<k>)</k>"
 
 
 class Parameter(type):
