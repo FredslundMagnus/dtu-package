@@ -17,6 +17,13 @@ def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
     return f"<d>{class_name}</d><k>(</k>{'<k>,</k> '.join(_args+_kwargs)}<k>)</k>"
 
 
+def check_primitives(args, kwargs: dict):
+    for arg in args:
+        print(type(arg))
+    for arg in kwargs.values():
+        print(type(arg))
+
+
 class _Parameter(type):
     def __new__(cls, name, bases, dct):
         x = super().__new__(cls, name, bases, dct)
@@ -24,6 +31,7 @@ class _Parameter(type):
         old_init = x.__init__
 
         def init(self, *args, **kwargs):
+            check_primitives(args, kwargs)
             self._get_transfer_format = _get_transfer_format(
                 inspect.getmodule(self),
                 self.__class__.__name__,
