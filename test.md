@@ -20,7 +20,7 @@ k { font-family: 'Verdana', sans-serif;} /* SYMBOLS */
 | <c>d</c>          | <d>str</d>        | <j>"fd"</j>       |
 | <c>k</c>          | <d>Param</d>      | <d>Param</d><k>(</k><j>"sdf sdf"</j><k>,</k> <c>s</c><k>=</k><f>78</f><k>)</k> |
 | <c>l</c>          | <d>Param2</d>     | <d>Param2</d><k>(</k><j>"s f"</j><k>,</k> <f>5</f><k>,</k> <c>s</c><k>=</k><f>1</f><k>,</k> <c>d</c><k>=</k><j>"76f"</j><k>)</k> |
-| <c>m</c>          | <d>Param3</d>     | <d>Param3</d><k>(</k><k>)</k> |
+| <c>m</c>          | <d>Param3</d>     | <d>Param3</d><k>(</k><j>"sdfs sdf"</j><k>,</k> <c>s</c><k>=</k><f>8</f><k>)</k> |
 
 # Output
 

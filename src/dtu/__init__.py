@@ -17,7 +17,7 @@ def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
     return f"<d>{class_name}</d><k>(</k>{'<k>,</k> '.join(_args+_kwargs)}<k>)</k>"
 
 
-class Parameter(type):
+class _Parameter(type):
     def __new__(cls, name, bases, dct):
         x = super().__new__(cls, name, bases, dct)
 
@@ -40,7 +40,11 @@ class Parameter(type):
         return x
 
 
-def relive(_code: str) -> Parameter:
+class Parameter(_Parameter):
+    pass
+
+
+def relive(_code: str) -> _Parameter:
     module_name, class_name,  args, kwargs = _code.replace("@", " ").split("~")
     module = importlib.import_module(module_name)
     _class = module.__getattribute__(class_name)
@@ -85,7 +89,7 @@ dtu
 
 def check(params, features):
     for key, value in params.items():
-        if value.__class__ not in {int, str, bool, float} and value.__class__.__class__ is not Parameter:
+        if value.__class__ not in {int, str, bool, float} and value.__class__.__class__ is not _Parameter:
             raise Exception(f"Problem with {key}: {value}. You can only user int, str, bool, float or objects with metaclass=Parameter")
         if key not in features:
             raise Exception(f'The feature "{key}" does not exist.')
@@ -140,7 +144,7 @@ def createFolders(name, folders, file):
 
 def change_parameter(params: dict[str, object]) -> dict[str, object]:
     for key, value in params.items():
-        if value.__class__.__class__ is Parameter:
+        if value.__class__.__class__ is _Parameter:
             params[key] = value._get_transfer_format
     return params
 

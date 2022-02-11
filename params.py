@@ -1,7 +1,7 @@
 from dtu import Parameter
 
 
-class Param(metaclass=Parameter):
+class Param(Parameter):
     a: int = 2
 
     def __init__(self, name, s=4) -> None:
@@ -9,7 +9,7 @@ class Param(metaclass=Parameter):
         self.s = s
 
 
-class Param2(metaclass=Parameter):
+class Param2(Parameter):
     a: int = 2
 
     def __init__(self, name, num, s=4, d="ef") -> None:
