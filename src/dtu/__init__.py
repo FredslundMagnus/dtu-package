@@ -47,7 +47,7 @@ def relive(_code: str) -> Parameter:
     return _class.__call__(*eval(args), **eval(kwargs))
 
 
-def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch", "torchvision", "matplotlib"]):
+def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch", "torchvision", "matplotlib"], first_time: bool = True):
     """
     github_link="https://github.com/FredslundMagnus/dtu-package.git"
     python="3.9.6" # see module available for newest
@@ -55,7 +55,18 @@ def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch
     """
     name = github_link.split("/")[-1][:-4]
     newline = "\n"
+    if first_time:
+        print("""
+Do these step by step:
+cd ~
+vi .profile
+i (insert mode)
+PATH=$PATH:$HOME/bin:. (Change to this)
+esc esc :wq enter (quiting and saving)
+mkdir bin
+""")
     print(f"""
+Copy all this and put it in the server terminal:
 cd ~/Desktop
 mkdir {name}
 cd {name}
