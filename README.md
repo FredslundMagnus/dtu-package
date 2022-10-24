@@ -10,7 +10,7 @@ C:/path/to/python.exe -m pip install --upgrade --force-reinstall git+https://git
 # Server
 Example of main.py
 ```python
-from helpers.server import Parameters, dtu
+from dtu import Parameters, dtu
 
 @dtu
 class Defaults(Parameters):
