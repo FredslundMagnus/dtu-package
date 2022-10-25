@@ -7,6 +7,17 @@ or
 C:/path/to/python.exe -m pip install --upgrade --force-reinstall git+https://github.com/FredslundMagnus/dtu-package.git
 ```
 
+# Setup
+Run this on your pc and it will show you commands you should use on the server:
+```python
+from dtu import setup
+
+setup(github_link="https://github.com/FredslundMagnus/Systems-Optimization.git", python="3.10.7", packages=["numpy", "pandas", "numba", "matplotlib"])
+```
+If this is your second project set ```python
+first_time: bool = True
+```
+
 # Server
 Example of main.py
 ```python
