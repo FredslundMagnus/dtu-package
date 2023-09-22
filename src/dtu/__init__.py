@@ -53,7 +53,7 @@ class Parameter(metaclass=_Parameter):
 
 
 def relive(_code: str) -> _Parameter:
-    module_name, class_name,  args, kwargs = _code.replace("@", " ").split("~")
+    module_name, class_name,  args, kwargs = _code.replace("@", " ").replace("#.#", ",").replace(".#", "}").replace("#.", "{").split("~")
     module = importlib.import_module(module_name)
     _class = module.__getattribute__(class_name)
     return _class.__call__(*eval(args), **eval(kwargs))
