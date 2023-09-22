@@ -8,7 +8,8 @@ dtu
 
 
 def _get_transfer_format(module, class_name, args, kwargs, symbol="~") -> str:
-    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + str(kwargs)).replace(" ", "@")
+    kw = str(kwargs).replace("{", "#.").replace("}", ".#")
+    return (module.__name__ + symbol + class_name + symbol + str(args) + symbol + kw).replace(" ", "@")
 
 
 def _get_par_str(class_name, args, kwargs: dict[str, object]) -> str:
