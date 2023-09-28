@@ -239,14 +239,14 @@ setup(
 """)
 
     with open('main.py', 'a') as f:
-        f.write("""from dtu import Parameters, dtu
+        f.write("""from dtu import Parameters, dtu, GPU
 
 
 @dtu
 class Defaults(Parameters):
     name: str = "local"
     instances: int = 1
-    GPU: bool = False
+    GPU: None | GPU = None
     time: int = 3600
 
     b: float = 2.0

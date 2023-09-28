@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dtu import Parameter, Parameters, dtu
+from dtu import Parameter, Parameters, dtu, GPU
 
 
 class Param(Parameter):
@@ -12,7 +12,7 @@ class Param(Parameter):
 class Defaults(Parameters):
     name: str = "local"
     instances: int = 1
-    GPU: bool = False
+    GPU: None | GPU = None
     time: int = 3600
 
     b: float = 2.0

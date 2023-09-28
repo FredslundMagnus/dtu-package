@@ -51,6 +51,16 @@ class _Parameter(type):
 class Parameter(metaclass=_Parameter):
     pass
 
+class GPU(Parameter):
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+    
+GPU.v16 = GPU("v16")
+GPU.v32 = GPU("v32")
+GPU.a40 = GPU("a40")
+GPU.a80 = GPU("a80")
+
 
 def relive(_code: str) -> _Parameter:
     module_name, class_name,  args, kwargs = _code.replace("@", " ").replace("#.#", ",").replace(".#", "}").replace("#.", "{").split("~")
@@ -62,7 +72,7 @@ def relive(_code: str) -> _Parameter:
 def setup(github_link: str, python: str = "3.9.6", packages: list[str] = ["torch", "torchvision", "matplotlib"], first_time: bool = True):
     """
     github_link="https://github.com/FredslundMagnus/dtu-package.git"
-    python="3.9.6" # see module available for newest
+    python="3.10.12" # see module available for newest
     packages=["torch", "torchvision", "matplotlib"]
     """
     name = github_link.split("/")[-1][:-4]
@@ -87,6 +97,7 @@ python3 -m venv project-env
 source project-env/bin/activate
 python -m pip install git+https://github.com/FredslundMagnus/dtu-package.git{(newline + "python -m pip install " + " ".join(packages)) if packages else ""}
 git config --global credential.helper store
+[wandb login]
 git clone {github_link}
 yes | cp project-env/bin/dtu_server ~/bin/dtu
 cd {name}
@@ -157,13 +168,13 @@ def change_parameter(params: dict[str, object]) -> dict[str, object]:
     return params
 
 
-def genExperiments(features, folders, file, name, n, cpu, **params):
+def genExperiments(features, folders, file, name, n, gpu, **params):
     createFolders(name, folders, file)
     check(params, features)
     params = change_parameter(params)
     for i in range(n):
         params['ID'] = i
-        file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if cpu else "gpu"}.sh\n')
+        file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if gpu is None else gpu.name}.sh\n')
 
 
 class Parameters():
@@ -171,7 +182,7 @@ class Parameters():
     ID: int = 0
     folders: list[str] = []
     instances: int = 1
-    GPU: bool = False
+    GPU: None | GPU = None
     time: int = 3600
     isServer: bool = False
     __first__: bool = True
@@ -184,8 +195,9 @@ class Parameters():
         else:
             file = open('experiments.sh', 'a')
         self.folders = list(self.folders)
-        features, folders = dict(self.__annotations__), ['Markdown'] + self.folders
-        genExperiments(features, folders, file, self.name, self.instances, not self.GPU, **{k: v for k, v in self.__dict__.items() if k not in {"name", "instances", "folders"}})
+        features_with_GPU, folders = dict(self.__annotations__), ['Markdown'] + self.folders
+        features = {name: value for name, value in features_with_GPU.items() if name != "GPU"}
+        genExperiments(features, folders, file, self.name, self.instances, self.GPU, **{k: v for k, v in self.__dict__.items() if k not in {"name", "instances", "folders", "GPU"}})
         file.close()
 
     @classmethod
