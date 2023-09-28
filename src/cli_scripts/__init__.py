@@ -45,10 +45,11 @@ python main.py $MYARGS""")
 
     with open("submit_gpu.sh", "w") as f:
         f.write("""#!/bin/sh
-#BSUB -q gpuv100
+#BSUB -q gpua100
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -n 4
 #BSUB -R "rusage[mem=16G]"
+#BSUB -R "select[gpu80gb]"
 #BSUB -R "span[hosts=1]"
 #BSUB -W 1440
 # end of BSUB options
