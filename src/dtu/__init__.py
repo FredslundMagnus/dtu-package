@@ -52,6 +52,11 @@ class Parameter(metaclass=_Parameter):
     pass
 
 class GPU:
+    v16: GPU
+    v32: GPU
+    a40: GPU
+    a80: GPU
+    
     def __init__(self, name: str) -> None:
         self.name = name
 
