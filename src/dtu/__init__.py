@@ -51,7 +51,7 @@ class _Parameter(type):
 class Parameter(metaclass=_Parameter):
     pass
 
-class GPU(Parameter):
+class GPU:
     def __init__(self, name: str) -> None:
         self.name = name
 
