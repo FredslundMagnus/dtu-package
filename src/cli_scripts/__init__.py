@@ -187,7 +187,10 @@ def run():
         file.readline()
         for line in file:
             run_clean(line)
-    remove("submit_gpu.sh")
+    remove("submit_gpu_a40.sh")
+    remove("submit_gpu_a80.sh")
+    remove("submit_gpu_v16.sh")
+    remove("submit_gpu_v32.sh")
     remove("submit_cpu.sh")
     status()
 

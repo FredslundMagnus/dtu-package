@@ -174,7 +174,7 @@ def genExperiments(features, folders, file, name, n, gpu, **params):
     params = change_parameter(params)
     for i in range(n):
         params['ID'] = i
-        file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if gpu is None else gpu.name}.sh\n')
+        file.write(f'bsub -o "outputs/{name}/Markdown/{name}_{i}.md" -J "{name}_{i}" -env MYARGS="-name {name}-{i} {" ".join(f"-{name} {value}" for name, value in params.items())}" < submit_{"cpu" if gpu is None else ("gpu_" + gpu.name)}.sh\n')
 
 
 class Parameters():
