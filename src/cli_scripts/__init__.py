@@ -43,13 +43,58 @@ source ../project-env/bin/activate
 
 python main.py $MYARGS""")
 
-    with open("submit_gpu.sh", "w") as f:
+    with open("submit_gpu_a80.sh", "w") as f:
         f.write("""#!/bin/sh
 #BSUB -q gpua100
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -n 4
 #BSUB -R "rusage[mem=16G]"
 #BSUB -R "select[gpu80gb]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 1440
+# end of BSUB options
+module -s load python3
+source ../project-env/bin/activate
+
+python main.py $MYARGS""")
+        
+    with open("submit_gpu_a40.sh", "w") as f:
+        f.write("""#!/bin/sh
+#BSUB -q gpua100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "rusage[mem=16G]"
+#BSUB -R "select[gpu40gb]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 1440
+# end of BSUB options
+module -s load python3
+source ../project-env/bin/activate
+
+python main.py $MYARGS""")
+        
+    with open("submit_gpu_v32.sh", "w") as f:
+        f.write("""#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "rusage[mem=16G]"
+#BSUB -R "select[gpu32gb]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 1440
+# end of BSUB options
+module -s load python3
+source ../project-env/bin/activate
+
+python main.py $MYARGS""")
+        
+    with open("submit_gpu_v16.sh", "w") as f:
+        f.write("""#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "rusage[mem=16G]"
+#BSUB -R "select[gpu16gb]"
 #BSUB -R "span[hosts=1]"
 #BSUB -W 1440
 # end of BSUB options
