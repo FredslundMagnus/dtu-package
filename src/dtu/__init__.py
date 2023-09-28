@@ -203,7 +203,7 @@ class Parameters():
     @classmethod
     def start(cls) -> None:
         override = cls.override(argv[1:])
-        values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run"}
+        values = {name: value for name, value in cls.__dict__.items() if name[0] != "_" and name != "run" and name != "GPU"}
         values['cls'] = cls
         values['self'] = cls
         values['isServer'] = len(argv[1:]) > 1
